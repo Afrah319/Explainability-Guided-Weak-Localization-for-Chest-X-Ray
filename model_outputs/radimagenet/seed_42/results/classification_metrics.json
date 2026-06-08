@@ -1,0 +1,62 @@
+{
+  "loss_type": "bce_pos_weight",
+  "best_epoch": 5,
+  "val": {
+    "loss": 0.40929506719112396,
+    "auroc_per_class": {
+      "Enlarged Cardiomediastinum": 0.8267059401080019,
+      "Cardiomegaly": 0.7759581105169341,
+      "Lung Opacity": 0.9017596782302664,
+      "Edema": 0.8686755952380953,
+      "Atelectasis": 0.8793700787401574,
+      "Pleural Effusion": 0.9177989130434783
+    },
+    "ap_per_class": {
+      "Enlarged Cardiomediastinum": 0.79088313261119,
+      "Cardiomegaly": 0.582685455607333,
+      "Lung Opacity": 0.9259144735555676,
+      "Edema": 0.63823946398991,
+      "Atelectasis": 0.7882505216876874,
+      "Pleural Effusion": 0.8638998955819172
+    },
+    "support": {
+      "Enlarged Cardiomediastinum": 202,
+      "Cardiomegaly": 202,
+      "Lung Opacity": 202,
+      "Edema": 202,
+      "Atelectasis": 202,
+      "Pleural Effusion": 202
+    },
+    "macro_auroc": 0.8617113859794889,
+    "mean_ap": 0.7649788238389341
+  },
+  "test": {
+    "loss": 0.3785452783107758,
+    "auroc_per_class": {
+      "Enlarged Cardiomediastinum": 0.8489906369274809,
+      "Cardiomegaly": 0.8529060225488796,
+      "Lung Opacity": 0.9069823051171688,
+      "Edema": 0.8836971252270696,
+      "Atelectasis": 0.8498769338959213,
+      "Pleural Effusion": 0.9292862907875015
+    },
+    "ap_per_class": {
+      "Enlarged Cardiomediastinum": 0.8247834346575262,
+      "Cardiomegaly": 0.6809996464166266,
+      "Lung Opacity": 0.9204904650691426,
+      "Edema": 0.5700077623725122,
+      "Atelectasis": 0.6976238947380653,
+      "Pleural Effusion": 0.7701077742553962
+    },
+    "support": {
+      "Enlarged Cardiomediastinum": 518,
+      "Cardiomegaly": 518,
+      "Lung Opacity": 518,
+      "Edema": 518,
+      "Atelectasis": 518,
+      "Pleural Effusion": 518
+    },
+    "macro_auroc": 0.8786232190840035,
+    "mean_ap": 0.7440021629182114
+  }
+}

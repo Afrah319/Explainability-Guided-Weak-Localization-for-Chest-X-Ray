@@ -1,0 +1,20 @@
+{
+  "gradcam": {
+    "thr_method": "pct",
+    "thr_param": 20.0,
+    "bb_method": "Largest_CC",
+    "val_macro_iou": 0.32106420228502497,
+    "val_macro_area": 0.28022716347284043,
+    "val_macro_recall": 0.638541031327368,
+    "selection_mode": "constrained"
+  },
+  "gradcam++": {
+    "thr_method": "fixed",
+    "thr_param": 0.5,
+    "bb_method": "Convex_Hull",
+    "val_macro_iou": 0.3946016899852697,
+    "val_macro_area": 0.22946319299216916,
+    "val_macro_recall": 0.6857797831842892,
+    "selection_mode": "constrained"
+  }
+}

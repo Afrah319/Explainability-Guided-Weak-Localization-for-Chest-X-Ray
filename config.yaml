@@ -1,0 +1,99 @@
+project_name: "DenseNet_XAI_Study"
+
+experiment:
+  name:         "DenseNet_XAI_Study"
+  seeds:        [42]
+  bootstrap_seed: 1234
+  device:       "cuda"
+  amp_dtype:    "bfloat16"
+  num_workers:  8
+  pin_memory:   true
+
+model:
+  pretrain: "both"
+
+paths:
+  csv_train: "/workspace/csvs/train_visualCheXbert.csv"
+  csv_val:   "/workspace/csvs/valid.csv"
+  csv_test:  "/workspace/csvs/test_labels.csv"
+
+  chexpert_root:     "/workspace/CheXpert-v1.0-small"
+  chexlocalize_root: "/workspace/chexlocalize"
+
+  chexlocalize_gt_val:  "/workspace/chexlocalize/gt_annotations_val.json"
+  chexlocalize_gt_test: "/workspace/chexlocalize/gt_annotations_test.json"
+
+  radimagenet_weights: "/workspace/weights/DenseNet121.pt"
+  output_root:           "/workspace/outputs"
+  xai_output_root:       "/workspace/outputs/xai_comparison"
+
+classes:
+  selected:
+    - csv_name:    "Enlarged Cardiomediastinum"
+      cl_name:     "Enlarged Cardiomediastinum"
+      uncertainty: "none"
+
+    - csv_name:    "Cardiomegaly"
+      cl_name:     "Cardiomegaly"
+      uncertainty: "none"
+
+    - csv_name:    "Lung Opacity"
+      cl_name:     "Lung Opacity"
+      uncertainty: "none"
+
+    - csv_name:    "Edema"
+      cl_name:     "Edema"
+      uncertainty: "none"
+
+    - csv_name:    "Atelectasis"
+      cl_name:     "Atelectasis"
+      uncertainty: "none"
+
+    - csv_name:    "Pleural Effusion"
+      cl_name:     "Pleural Effusion"
+      uncertainty: "none"
+
+chexlocalize_name_map:
+  "Airspace Opacity": "Lung Opacity"
+
+data:
+  image_size:      224
+  clahe_clip:      2.0
+  clahe_grid:      8
+  rotation_deg:    5.0
+  norm_mean:       [0.485, 0.456, 0.406]
+  norm_std:        [0.229, 0.224, 0.225]
+  batch_size:      128
+  use_pos_weight:  true
+
+training:
+  epochs:                   15
+  lr:                       1.0e-4
+  weight_decay:             1.0e-5
+  early_stopping_patience:  4
+  loss_type:                "bce_pos_weight"
+
+xai:
+  methods:           ["gradcam", "gradcam++"]
+  target_layer:      "features.norm5"
+  default_threshold: 0.5
+  raw_iou_thresholds: [0.15, 0.20, 0.30, 0.50]
+
+thresholding:
+  fixed:
+    values: [0.20, 0.30, 0.40, 0.50, 0.60, 0.70]
+  percentile:
+    values: [10, 20, 30, 40, 50]
+  otsu:
+    use: true
+
+bbox_methods: ["Largest_CC", "Multi_BBox", "Convex_Hull"]
+
+selection:
+  area_cap: 0.30
+  fallback: "global_argmax_iou"
+
+statistics:
+  bootstrap_iters: 5000
+  alpha:           0.05
+  min_class_n:     5

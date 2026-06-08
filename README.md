@@ -6,6 +6,7 @@ The study investigates the impact of:
 
 * ImageNet vs. RadImageNet pretraining
 * Grad-CAM vs. Grad-CAM++ explainability methods
+* Post-processing Tuning for (Threshold and Box strategy)
 
 using DenseNet-121 models trained on CheXpert and evaluated on CheXLocalize.
 
@@ -27,8 +28,8 @@ requirements.txt
 
 This project uses:
 
-* CheXpert
-* CheXLocalize
+* CheXpert:https://stanfordmlgroup.github.io/competitions/chexpert/
+* CheXLocalize:https://stanfordaimi.azurewebsites.net/datasets/23c56a0d-15de-405b-87c8-99c30138950c
 
 Please download the datasets from their official sources and configure the paths accordingly.
 
